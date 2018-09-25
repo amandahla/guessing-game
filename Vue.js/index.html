@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guessing Game</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vee-validate@2.0.0-rc.18/dist/vee-validate.js"></script>
+
+<div class="hero is-fullheight is-info is-bold">
+    <div class="hero-body">
+        <div class="container">
+
+            <h1 class="title has-text-centered">Guessing Game</h1>
+            <div class="box">
+
+                <form id="guessing-form" @submit.prevent="processForm">
+                    <div class="field">
+                        <label class="label">Guess Number</label>
+                        <input name="guessnumber" v-model="form.guessnumber" placeholder="Please input your guess." v-validate="'required|max_value:100|numeric'"
+                            number>
+                    </div>
+
+                    <p class="help is-danger" v-if="errors.has('guessnumber')">
+                        {{ errors.first('guessnumber') }}
+                    </p>
+                    <div v-else>
+                        <div class="field has-text-right">
+                            <button type="submit" class="button is-danger">Submit</button>
+                        </div>
+                        <p>{{result}}</p>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="js/index.js"></script>
