@@ -3,6 +3,18 @@ run-name: ${{ inputs.trigger_reference }}
 on:
   workflow_dispatch:
     inputs:
+      name:
+        description: 'Name of service'
+        required: true
+        type: string
+      record_type:
+        description: 'Type of DNS record to be created'
+        required: true
+        default: 'A'
+        type: choice
+        options:
+          - 'A'
+          - 'CNAME'
       addresses:
         description: 'List of IP addresses (required if record_type is "A")'
         type: string
@@ -19,5 +31,4 @@ jobs:
         id: set_json_data
         run: |
           json_data=$(echo '${{ toJson(github.event.inputs) }}')
-          echo "json_data=${json_data}" >> $GITHUB_OUTPUT
-          cat $GITHUB_OUTPUT
+          echo "json_data=${json_data}"
