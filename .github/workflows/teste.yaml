@@ -31,4 +31,7 @@ jobs:
         id: set_json_data
         run: |
           json_data=$(echo '${{ toJson(github.event.inputs) }}')
-          echo "json_data=${json_data}"
+          addresses="${{ github.event.inputs.addresses }}"
+          json_addresses=$(echo "$addresses" | jq -R 'split(",")')
+          updated_json=$(echo "$json_data" | jq --argjson addresses "$json_addresses" '.addresses = $addresses')
+          echo "updated_json=${updated_json}"
