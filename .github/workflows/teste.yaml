@@ -1,0 +1,23 @@
+ame: Create new dns record service
+run-name: ${{ inputs.trigger_reference }}
+on:
+  workflow_dispatch:
+    inputs:
+      addresses:
+        description: 'List of IP addresses (required if record_type is "A")'
+        type: string
+
+
+jobs:
+  set_json_data:
+    name: Set JSON data
+    runs-on: ubuntu-24.04
+    outputs:
+      json_data: ${{ steps.set_json_data.outputs.json_data }}
+    steps:
+      - name: Set JSON data
+        id: set_json_data
+        run: |
+          json_data=$(echo '${{ toJson(github.event.inputs) }}')
+          echo "json_data=${json_data}" >> $GITHUB_OUTPUT
+          cat $GITHUB_OUTPUT
