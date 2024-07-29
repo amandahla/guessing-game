@@ -32,6 +32,6 @@ jobs:
         run: |
           json_data=$(echo '${{ toJson(github.event.inputs) }}')
           addresses="${{ github.event.inputs.addresses }}"
-          json_addresses=$(echo "$addresses" | jq -R 'split(",")')
+          json_addresses=$(echo "$addresses" |  jq -R 'split(",") | map(gsub("^\\s+|\\s+$"; ""))')
           updated_json=$(echo "$json_data" | jq --argjson addresses "$json_addresses" '.addresses = $addresses')
           echo "updated_json=${updated_json}"
