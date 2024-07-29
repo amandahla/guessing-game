@@ -1,4 +1,4 @@
-ame: Create new dns record service
+name: Create new dns record service
 run-name: ${{ inputs.trigger_reference }}
 on:
   workflow_dispatch:
