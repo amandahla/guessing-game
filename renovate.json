@@ -17,8 +17,7 @@
       ],
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "matrix-org/mjolnir",
-      "extractVersionTemplate": "^v?(?<version>.*)$",
-      "currentValueTemplate": "v{{ currentValue }}"
+      "versioningTemplate": "semver-coerced"
     }
   ]
 }
