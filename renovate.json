@@ -3,24 +3,39 @@
   "extends": [
     "config:base"
   ],
-  "prBodyNotes": [
-        "---",
-		"### Pre-merge checks",
-        "- [ ] The Release Notes do not describe any breaking changes.",
-        "- [ ] The Node version is the same as the one in theo [Mjolnir Dockerfile](https://github.com/matrix-org/mjolnir/blob/main/Dockerfile)."
-  ],
   "regexManagers": [
     {
-      "fileMatch": ["(^|/)snapcraft.yaml$"],
-      "description": "Update Mjolnir",
+      "fileMatch": ["(^|/)rockcraft.yaml$"],
+      "description": "Update base image references",
       "matchStringsStrategy": "any",
-      "matchStrings": [
-        "source-tag: v(?<currentValue>.+)",
-        "version: (?<currentValue>.+)"
-      ],
+      "matchStrings": ["# renovate: build-base:\\s+(?<depName>[^:]*):(?<currentValue>[^\\s@]*)(@(?<currentDigest>sha256:[0-9a-f]*))?",
+      "# renovate: base:\\s+(?<depName>[^:]*):(?<currentValue>[^\\s@]*)(@(?<currentDigest>sha256:[0-9a-f]*))?"],
+      "datasourceTemplate": "docker",
+      "versioningTemplate": "ubuntu"
+    },
+    {
+      "fileMatch": ["(^|/)rockcraft.yaml$"],
+      "description": "Update Synapse workload",
+      "matchStringsStrategy": "any",
+      "matchStrings": ["source-tag: v(?<currentValue>.+)"],
       "datasourceTemplate": "github-releases",
-      "depNameTemplate": "matrix-org/mjolnir",
+      "depNameTemplate": "element-hq/synapse",
       "versioningTemplate": "semver-coerced"
+    }
+
+  ],
+  "packageRules": [
+    {
+      "enabled": true,
+      "matchDatasources": [
+        "docker"
+      ],
+      "pinDigests": true
+    },
+    {
+      "matchFiles": ["rockcraft.yaml"],
+      "matchUpdateTypes": ["major", "minor", "patch"],
+      "enabled": false
     }
   ]
 }
