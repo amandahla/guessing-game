@@ -1,0 +1,24 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:base"
+  ],
+  "prBodyNotes": [
+    "Warning: Before approving, verify if the Node version has changed in [Mjolnir Dockerfile](https://github.com/matrix-org/mjolnir/blob/main/Dockerfile)."
+  ],
+  "regexManagers": [
+    {
+      "fileMatch": ["(^|/)snapcraft.yaml$"],
+      "description": "Update Mjolnir",
+      "matchStringsStrategy": "any",
+      "matchStrings": [
+        "source-tag: v(?<currentValue>.+)",
+        "version: (?<currentValue>.+)"
+      ],
+      "datasourceTemplate": "github-releases",
+      "depNameTemplate": "matrix-org/mjolnir",
+      "extractVersionTemplate": "^v?(?<version>.*)$",
+      "currentValueTemplate": "v{{{version}}}"
+    }
+  ]
+}
