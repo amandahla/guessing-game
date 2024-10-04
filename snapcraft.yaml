@@ -4,7 +4,7 @@
 name: mjolnir
 summary: Mjolnir snap
 description: A moderation tool for Matrix
-version: 1.7.0
+version: 1.8.3
 base: core22
 license: Apache-2.0
 confinement: strict
@@ -28,7 +28,7 @@ parts:
         after: [node]
         plugin: nil
         source: https://github.com/matrix-org/mjolnir.git
-        source-tag: v1.8.0
+        source-tag: v1.8.3
         source-type: git
         override-build: |
             npm install -g yarn@1.22.19
