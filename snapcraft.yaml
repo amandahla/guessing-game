@@ -4,7 +4,7 @@
 name: mjolnir
 summary: Mjolnir snap
 description: A moderation tool for Matrix
-version: 1.8.0
+version: 1.7.0
 base: core22
 license: Apache-2.0
 confinement: strict
