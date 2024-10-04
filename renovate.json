@@ -4,7 +4,10 @@
     "config:base"
   ],
   "prBodyNotes": [
-    "Warning: Before approving, verify if the Node version has changed in [Mjolnir Dockerfile](https://github.com/matrix-org/mjolnir/blob/main/Dockerfile)."
+        "---",
+		"### Pre-merge checks",
+        "- [ ] The Release Notes do not describe any breaking changes.",
+        "- [ ] The Node version is the same as the one in theo [Mjolnir Dockerfile](https://github.com/matrix-org/mjolnir/blob/main/Dockerfile)."
   ],
   "regexManagers": [
     {
