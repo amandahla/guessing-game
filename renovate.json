@@ -15,14 +15,13 @@
     },
     {
       "fileMatch": ["(^|/)rockcraft.yaml$"],
-      "description": "Update Synapse workload",
+      "description": "Update Maubot workload",
       "matchStringsStrategy": "any",
-      "matchStrings": ["source-tag: v(?<currentValue>.+)"],
+      "matchStrings": ["maubot==(?<currentValue>.+)", "version: (?<currentValue>.+)"],
       "datasourceTemplate": "github-releases",
-      "depNameTemplate": "element-hq/synapse",
+      "depNameTemplate": "maubot/maubot",
       "versioningTemplate": "semver-coerced"
     }
-
   ],
   "packageRules": [
     {
@@ -31,11 +30,7 @@
         "docker"
       ],
       "pinDigests": true
-    },
-    {
-      "matchFiles": ["rockcraft.yaml"],
-      "matchUpdateTypes": ["major", "minor", "patch"],
-      "enabled": false
     }
   ]
 }
+
