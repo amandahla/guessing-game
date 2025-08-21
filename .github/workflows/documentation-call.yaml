@@ -25,7 +25,7 @@ jobs:
     - uses: planetscale/ghcommit-action@v0.1.6
       with:
         commit_message: "terraform-docs: automated action"
-        repo: ${{ github.event.pull_request.repository }}
+        repo: ${{ github.event.pull_request.head.repo.full_name }}
         branch: ${{ github.event.pull_request.head.ref }}
         file_pattern: '${{ inputs.terraform-directory }}/*.md'
       env:
