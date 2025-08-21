@@ -1,7 +1,7 @@
 # Copyright 2025 Canonical Ltd.
 # See LICENSE file for licensing details.
 
-resource "juju_application" "indico" {
+resource "juju_application" "indico_one" {
   name  = var.app_name
   model = var.model
 
