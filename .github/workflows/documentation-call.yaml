@@ -27,6 +27,6 @@ jobs:
         commit_message: "terraform-docs: automated action"
         repo: ${{ github.repository }}
         branch: ${{ github.head_ref || github.ref_name }}
-        file_pattern: '${{ inputs.terraform-directory }}/**/*.md'
+        file_pattern: '${{ inputs.terraform-directory }}/*.md'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
